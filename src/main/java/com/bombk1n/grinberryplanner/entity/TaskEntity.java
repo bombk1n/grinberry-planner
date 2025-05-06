@@ -35,8 +35,3 @@ public class TaskEntity {
     }
 }
 
-enum TaskType {
-    IN_PROGRESS,
-    COMPLETED
-}
-

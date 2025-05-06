@@ -33,7 +33,3 @@ public class UserEntity {
     private Set<TaskEntity> tasks;
 }
 
-enum UserRole {
-    USER,
-    ADMIN
-}
