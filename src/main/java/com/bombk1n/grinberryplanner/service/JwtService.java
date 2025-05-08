@@ -1,5 +1,6 @@
 package com.bombk1n.grinberryplanner.service;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -13,9 +14,12 @@ import java.util.function.Function;
 
 @Service
 @Slf4j
+
 public class JwtService {
 
-    private String JWT_SECRET_KEY = "80a030a97221a8ce7aab4a880e186da46241caa40b2b6deb5b2f9768f9467f59";
+    private final Dotenv dotenv = Dotenv.load();
+
+    private final String JWT_SECRET_KEY = dotenv.get("JWT_SECRET_KEY");
 
     private long JWT_EXPIRATION = 24 * 60 * 60 * 1000;
 
