@@ -16,10 +16,6 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleGeneralException(Exception e){
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unpredictable error occurred.");
-    }
     @ExceptionHandler(UsernameAlreadyExistsException.class)
     public ResponseEntity<String> handleUserAlreadyExists(UsernameAlreadyExistsException e){
         return ResponseEntity.badRequest().body(e.getMessage());
@@ -41,5 +37,4 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleUserBadCredentials(BadCredentialsException e){
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
     }
-
 }
