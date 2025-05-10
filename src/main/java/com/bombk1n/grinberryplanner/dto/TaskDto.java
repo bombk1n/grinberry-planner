@@ -1,6 +1,6 @@
 package com.bombk1n.grinberryplanner.dto;
 
-import com.bombk1n.grinberryplanner.entity.TaskType;
+import com.bombk1n.grinberryplanner.enums.TaskType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package com.bombk1n.grinberryplanner.service;
+package com.bombk1n.grinberryplanner.security;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import io.jsonwebtoken.*;

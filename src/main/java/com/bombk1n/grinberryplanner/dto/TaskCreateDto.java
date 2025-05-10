@@ -1,6 +1,6 @@
 package com.bombk1n.grinberryplanner.dto;
 
-import com.bombk1n.grinberryplanner.entity.TaskType;
+import com.bombk1n.grinberryplanner.enums.TaskType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

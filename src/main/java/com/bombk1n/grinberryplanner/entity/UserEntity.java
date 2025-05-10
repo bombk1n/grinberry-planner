@@ -1,5 +1,6 @@
 package com.bombk1n.grinberryplanner.entity;
 
+import com.bombk1n.grinberryplanner.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 

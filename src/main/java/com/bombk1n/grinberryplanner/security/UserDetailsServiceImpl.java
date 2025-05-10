@@ -1,8 +1,7 @@
-package com.bombk1n.grinberryplanner.service;
+package com.bombk1n.grinberryplanner.security;
 
 import com.bombk1n.grinberryplanner.entity.UserEntity;
 import com.bombk1n.grinberryplanner.repository.UserRepository;
-import com.bombk1n.grinberryplanner.security.CustomUserDetails;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

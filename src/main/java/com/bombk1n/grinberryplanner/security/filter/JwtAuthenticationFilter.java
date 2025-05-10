@@ -1,7 +1,7 @@
-package com.bombk1n.grinberryplanner.filter;
+package com.bombk1n.grinberryplanner.security.filter;
 
-import com.bombk1n.grinberryplanner.service.JwtService;
-import com.bombk1n.grinberryplanner.service.UserDetailsServiceImpl;
+import com.bombk1n.grinberryplanner.security.JwtService;
+import com.bombk1n.grinberryplanner.security.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

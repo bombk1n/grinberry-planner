@@ -1,7 +1,7 @@
 package com.bombk1n.grinberryplanner.config;
 
-import com.bombk1n.grinberryplanner.filter.JwtAuthenticationFilter;
-import com.bombk1n.grinberryplanner.service.UserDetailsServiceImpl;
+import com.bombk1n.grinberryplanner.security.filter.JwtAuthenticationFilter;
+import com.bombk1n.grinberryplanner.security.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

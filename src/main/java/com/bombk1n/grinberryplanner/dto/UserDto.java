@@ -1,6 +1,6 @@
 package com.bombk1n.grinberryplanner.dto;
 
-import com.bombk1n.grinberryplanner.entity.UserRole;
+import com.bombk1n.grinberryplanner.enums.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
