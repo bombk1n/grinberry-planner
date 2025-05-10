@@ -2,7 +2,6 @@ package com.bombk1n.grinberryplanner.dto;
 
 import com.bombk1n.grinberryplanner.enums.TaskType;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,11 +20,11 @@ public class TaskCreateDto {
     @Size(max = 1000)
     private String description;
 
-    @NotNull
+
     private TaskType status;
 
     private LocalDateTime deadline;
 
-    @NotNull
+
     private Long userId;
 }

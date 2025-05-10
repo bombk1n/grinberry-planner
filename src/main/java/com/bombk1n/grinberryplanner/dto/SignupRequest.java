@@ -22,9 +22,4 @@ public class SignupRequest {
 
     private Set<UserRole> roles;
 
-    public @NotBlank(message = "Username is required") String getUsername() {
-        return username;
-    }
-
-
 }

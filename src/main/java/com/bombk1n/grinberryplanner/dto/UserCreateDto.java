@@ -2,7 +2,6 @@ package com.bombk1n.grinberryplanner.dto;
 
 import com.bombk1n.grinberryplanner.enums.UserRole;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +21,5 @@ public class UserCreateDto {
     @Size(min = 5, max = 64)
     private String password;
 
-    @NotNull
     private Set<UserRole> roles;
 }
