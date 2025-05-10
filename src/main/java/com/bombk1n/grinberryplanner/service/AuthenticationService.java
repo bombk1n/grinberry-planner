@@ -32,7 +32,7 @@ public class AuthenticationService {
 
     public JwtAuthResponse register(SignupRequest request) {
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
-            throw new UsernameAlreadyExistsException("Username already exists");
+            throw new UsernameAlreadyExistsException("Username: "+request.getUsername()+" already exists");
         }
 
         UserEntity user = new UserEntity();

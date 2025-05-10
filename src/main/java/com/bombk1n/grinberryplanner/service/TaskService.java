@@ -41,7 +41,7 @@ public class TaskService {
         UserEntity user = getCurrentUser();
         return taskRepository.findByIdAndUser(id, user)
                 .map(this::convertTaskEntityToDto)
-                .orElseThrow(() -> new TaskNotFoundException("Task not found"));
+                .orElseThrow(() -> new TaskNotFoundException("Task with id: " + id + " not found"));
     }
 
     public TaskDto save(TaskCreateDto taskCreateDto) {
