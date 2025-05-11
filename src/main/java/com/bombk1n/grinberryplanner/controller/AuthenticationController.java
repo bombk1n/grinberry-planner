@@ -1,5 +1,6 @@
 package com.bombk1n.grinberryplanner.controller;
 
+import com.bombk1n.grinberryplanner.dto.ErrorResponse;
 import com.bombk1n.grinberryplanner.dto.JwtAuthResponse;
 import com.bombk1n.grinberryplanner.dto.SigninRequest;
 import com.bombk1n.grinberryplanner.dto.SignupRequest;
@@ -31,12 +32,20 @@ public class AuthenticationController {
     @Operation(
             summary = "Register new user",
             description = "Creates a new user account and returns a JWT token.",
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    required = true,
+                    content = @Content(schema = @Schema(implementation = SignupRequest.class))
+            ),
             responses = {
                     @ApiResponse(responseCode = "200", description = "User registered successfully",
                             content = @Content(mediaType = "application/json",
                                     schema = @Schema(implementation = JwtAuthResponse.class))),
-                    @ApiResponse(responseCode = "400", description = "Username already exists",
-                            content = @Content)
+                    @ApiResponse(responseCode = "400", description = "Invalid input or username already exists",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = ErrorResponse.class))),
+                    @ApiResponse(responseCode = "500", description = "Internal server error",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
     @PostMapping("/register")
@@ -50,12 +59,23 @@ public class AuthenticationController {
     @Operation(
             summary = "Login user",
             description = "Authenticates user credentials and returns a JWT token.",
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    required = true,
+                    content = @Content(schema = @Schema(implementation = SigninRequest.class))
+            ),
             responses = {
                     @ApiResponse(responseCode = "200", description = "User logged in successfully",
                             content = @Content(mediaType = "application/json",
                                     schema = @Schema(implementation = JwtAuthResponse.class))),
-                    @ApiResponse(responseCode = "401", description = "Invalid user credentials",
-                            content = @Content)
+                    @ApiResponse(responseCode = "401", description = "Invalid username or password",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = ErrorResponse.class))),
+                    @ApiResponse(responseCode = "400", description = "Invalid input",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = ErrorResponse.class))),
+                    @ApiResponse(responseCode = "500", description = "Internal server error",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = ErrorResponse.class)))
             }
     )
     @PostMapping("/login")

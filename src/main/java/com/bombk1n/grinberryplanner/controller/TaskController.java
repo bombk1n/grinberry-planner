@@ -1,5 +1,6 @@
 package com.bombk1n.grinberryplanner.controller;
 
+import com.bombk1n.grinberryplanner.dto.ErrorResponse;
 import com.bombk1n.grinberryplanner.dto.TaskCreateDto;
 import com.bombk1n.grinberryplanner.dto.TaskDto;
 import com.bombk1n.grinberryplanner.service.TaskService;
@@ -15,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
