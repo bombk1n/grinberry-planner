@@ -4,6 +4,11 @@ import com.bombk1n.grinberryplanner.dto.JwtAuthResponse;
 import com.bombk1n.grinberryplanner.dto.SigninRequest;
 import com.bombk1n.grinberryplanner.dto.SignupRequest;
 import com.bombk1n.grinberryplanner.service.AuthenticationService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/api/auth")
+@Tag(name = "Authentication", description = "Endpoints for user registration and login")
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
@@ -22,6 +28,17 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
+    @Operation(
+            summary = "Register new user",
+            description = "Creates a new user account and returns a JWT token.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "User registered successfully",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = JwtAuthResponse.class))),
+                    @ApiResponse(responseCode = "400", description = "Username already exists",
+                            content = @Content)
+            }
+    )
     @PostMapping("/register")
     public ResponseEntity<JwtAuthResponse> register(@Valid @RequestBody SignupRequest request) {
         log.info("Received register request: {}", request);
@@ -30,6 +47,17 @@ public class AuthenticationController {
         return ResponseEntity.ok(response);
     }
 
+    @Operation(
+            summary = "Login user",
+            description = "Authenticates user credentials and returns a JWT token.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "User logged in successfully",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = JwtAuthResponse.class))),
+                    @ApiResponse(responseCode = "401", description = "Invalid user credentials",
+                            content = @Content)
+            }
+    )
     @PostMapping("/login")
     public ResponseEntity<JwtAuthResponse> login(@Valid @RequestBody SigninRequest request) {
         log.info("Received login request: {}", request);
