@@ -24,6 +24,13 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final CustomAuthenticationEntryPoint authenticationEntryPoint;
 
+    private static final String[] SWAGGER_WHITELIST = {
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            "/swagger-ui.html",
+            "/v3/api-docs.yaml"
+    };
+
     public SecurityConfig(UserDetailsServiceImpl userDetailsServiceImpl, JwtAuthenticationFilter jwtAuthenticationFilter, CustomAuthenticationEntryPoint authenticationEntryPoint) {
         this.userDetailsServiceImpl = userDetailsServiceImpl;
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
@@ -35,12 +42,10 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
-                //test
-                .authorizeHttpRequests(req -> req.requestMatchers("/api/auth/login/**", "/api/auth/register/**"
-                        ,"http://localhost:8080/v3/api-docs/**", "/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui/index.html")
-                        .permitAll()
-                        .anyRequest()
-                        .authenticated())
+                .authorizeHttpRequests(req -> req
+                        .requestMatchers("/api/auth/login/**", "/api/auth/register/**").permitAll()
+                        .requestMatchers(SWAGGER_WHITELIST).hasRole("ADMIN")
+                        .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint(authenticationEntryPoint)
                         .accessDeniedHandler((request, response, accessDeniedException) ->
