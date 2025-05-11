@@ -1,5 +1,6 @@
 package com.bombk1n.grinberryplanner.entity;
 
+import com.bombk1n.grinberryplanner.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
-@ToString(exclude = "tasks")
+@ToString(exclude = {"tasks", "password"})
 public class UserEntity {
 
     @Id
@@ -24,7 +25,7 @@ public class UserEntity {
     @Column(nullable = false)
     private String password;
 
-    @ElementCollection(fetch = FetchType.LAZY)
+    @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(value = EnumType.STRING)
     @Column(name = "roles", nullable = false)
     private Set<UserRole> roles;

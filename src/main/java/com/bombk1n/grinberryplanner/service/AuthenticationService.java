@@ -4,9 +4,11 @@ import com.bombk1n.grinberryplanner.dto.JwtAuthResponse;
 import com.bombk1n.grinberryplanner.dto.SigninRequest;
 import com.bombk1n.grinberryplanner.dto.SignupRequest;
 import com.bombk1n.grinberryplanner.entity.UserEntity;
-import com.bombk1n.grinberryplanner.entity.UserRole;
+import com.bombk1n.grinberryplanner.enums.UserRole;
 import com.bombk1n.grinberryplanner.exceptions.UsernameAlreadyExistsException;
 import com.bombk1n.grinberryplanner.repository.UserRepository;
+import com.bombk1n.grinberryplanner.security.JwtService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,8 +17,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Slf4j
 @Service
 public class AuthenticationService {
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
@@ -31,7 +35,8 @@ public class AuthenticationService {
 
     public JwtAuthResponse register(SignupRequest request) {
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
-            throw new UsernameAlreadyExistsException("Username already exists");
+            log.error("Username already exists: {}", request.getUsername());
+            throw new UsernameAlreadyExistsException("Username: " + request.getUsername() + " already exists");
         }
 
         UserEntity user = new UserEntity();
@@ -40,10 +45,13 @@ public class AuthenticationService {
         user.setRoles(Set.of(UserRole.USER));
         userRepository.save(user);
 
+        log.info("User registered successfully: {}", request.getUsername());
         return login(new SigninRequest(request.getUsername(), request.getPassword()));
     }
 
     public JwtAuthResponse login(SigninRequest request) {
+        log.info("Attempting login for user: {}", request.getUsername());
+
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),
@@ -51,9 +59,7 @@ public class AuthenticationService {
                 )
         );
 
+        log.info("User logged in successfully: {}", request.getUsername());
         return new JwtAuthResponse(jwtService.generateToken(request.getUsername()));
     }
-
-
 }
-

@@ -1,12 +1,13 @@
 package com.bombk1n.grinberryplanner.config;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ModelMapperConfig {
     @Bean
-    public ModelMapperConfig modelMapper() {
-        return new ModelMapperConfig();
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
 }
