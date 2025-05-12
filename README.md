@@ -106,7 +106,7 @@ This will start the following services:
 }
 ```
 
-##### <a id="ctaskcreate">Create Task -> /api/todo</a>
+##### <a id="taskcreate">Create Task -> /api/todo</a>
 ```json
 {
     "title": "Finish Homework",
