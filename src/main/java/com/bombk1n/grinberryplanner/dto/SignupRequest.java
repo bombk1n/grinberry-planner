@@ -1,14 +1,11 @@
 package com.bombk1n.grinberryplanner.dto;
 
-import com.bombk1n.grinberryplanner.enums.UserRole;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -25,6 +22,4 @@ public class SignupRequest {
     @Schema(description = "The password for the new user. It must be at least 5 characters long", example = "secret123")
     private String password;
 
-    @Schema(description = "Set of roles assigned to the new user. Roles determine the user's permissions.", example = "[\"USER\", \"ADMIN\"]")
-    private Set<UserRole> roles;
 }
