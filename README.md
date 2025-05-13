@@ -18,7 +18,7 @@ Grinberry Planner is a Java-based Spring Boot REST API designed to help users ef
 - Spring Data JPA
 - JWT (JSON Web Tokens)
 - Docker & Docker Compose
-- Relational Database (e.g., MySQL)
+- Relational Database (e.g., PostgreSQL)
 - Flyway
 
 ## Prerequisites
